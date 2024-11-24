@@ -1,12 +1,20 @@
 package com.learnSpring.learn.student;
 
-import java.time.LocalDate;
+import jakarta.persistence.*;
 
+import java.time.LocalDate;
+@Entity
+@Table(name = "student")
 public class Student {
+    @Id
+    @GeneratedValue
+    private Integer id;
     private String firstname;
     private String lastname;
     private LocalDate date;
+    @Column(unique = true)
     private String email;
+    @Transient
     private int age;
 
 

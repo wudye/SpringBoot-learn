@@ -16,9 +16,9 @@ public class StudentController {
    // @Autowired
     // private StudenService studenService;
     // constructor injection
-    private final InMemoryStudentService inMemoryStudentService;
+    private final StudenService inMemoryStudentService;
     @Autowired
-    public StudentController(InMemoryStudentService studenService) {
+    public StudentController(StudenService studenService) {
         this.inMemoryStudentService = studenService;
     }
 
@@ -28,7 +28,7 @@ public class StudentController {
     }
 
     @PostMapping
-    public boolean saveStudent(@RequestBody Student student) {
+    public Student saveStudent(@RequestBody Student student) {
         return inMemoryStudentService.save(student);
     }
 
