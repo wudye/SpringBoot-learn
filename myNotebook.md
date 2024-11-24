@@ -44,5 +44,7 @@ Bean: -> ApplicationContext(inject Bean to diffrent Bean)
 
 Always use contructor injection instead field injection
 
+controller -> interface service(normal method) -> service(implements) -> repository(change to list, use list methods)
+constructor autowired injection 
 
 

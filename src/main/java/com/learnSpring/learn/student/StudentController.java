@@ -1,12 +1,8 @@
 package com.learnSpring.learn.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -20,14 +16,34 @@ public class StudentController {
    // @Autowired
     // private StudenService studenService;
     // constructor injection
-    private StudenService studenService;
+    private final InMemoryStudentService inMemoryStudentService;
     @Autowired
-    public StudentController(StudenService studenService) {
-        this.studenService = studenService;
+    public StudentController(InMemoryStudentService studenService) {
+        this.inMemoryStudentService = studenService;
     }
 
     @GetMapping
     public List<Student> findAllStudent() {
-        return studenService.findAllStudent();
+        return inMemoryStudentService.findAllStudent();
+    }
+
+    @PostMapping
+    public boolean saveStudent(@RequestBody Student student) {
+        return inMemoryStudentService.save(student);
+    }
+
+    @GetMapping("/{email}")
+    public Student findStudentByEmail(@PathVariable String email) {
+        return inMemoryStudentService.findByEmail(email);
+    }
+
+    @PutMapping()
+    public Student updateStudent(@RequestBody Student student) {
+        return inMemoryStudentService.updateStudent(student);
+    }
+
+    @DeleteMapping("/{email}")
+    public void deleteStudent(@PathVariable String email) {
+        inMemoryStudentService.deleteStudent(email);
     }
 }
