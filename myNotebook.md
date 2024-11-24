@@ -39,4 +39,10 @@ rest API
     get, post, put, delete
     start api/
 
+Bean: -> ApplicationContext(inject Bean to diffrent Bean)
+    @Bean @Component @Service @Repository @Controller
+
+Always use contructor injection instead field injection
+
+
 
